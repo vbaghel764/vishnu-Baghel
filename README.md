@@ -15,7 +15,7 @@
 
 ### 🙋‍♂️ About Me
 
-I'm an **Azure DevOps Engineer** with 2+ years of experience building and automating cloud infrastructure on Microsoft Azure. My work sits at the intersection of infrastructure, automation, and security — provisioning environments with Terraform, shipping them through CI/CD, and running workloads on Kubernetes without losing sight of governance and cost.
+I'm an **Azure DevOps Engineer** with 5 years of experience building and automating cloud infrastructure on Microsoft Azure. My work sits at the intersection of infrastructure, automation, and security — provisioning environments with Terraform, shipping them through CI/CD, and running workloads on Kubernetes without losing sight of governance and cost.
 
 * 🔭 Currently working on Azure infrastructure automation using **Terraform** and **Azure Landing Zone** patterns
 * ⚙️ Building and maintaining **CI/CD pipelines** with GitHub Actions and Azure DevOps
