@@ -1,0 +1,682 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.73.0"
+  },
+  "ReportID": "019fc909-4159-74ba-90d4-fbd23df0126c",
+  "CreatedAt": "2026-08-04T00:40:54.809312+05:30",
+  "ArtifactName": "environments/pre-prod",
+  "ArtifactType": "filesystem",
+  "Results": [
+    {
+      "Target": ".",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 66,
+        "Failures": 0
+      }
+    },
+    {
+      "Target": "../../child_module/azurerm_key_vault/main.tf",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 0,
+        "Failures": 2
+      },
+      "Misconfigurations": [
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AZU-0013",
+          "Title": "Key vault should have the network acl block specified",
+          "Description": "Network ACLs allow you to reduce your exposure to risk by limiting what can access your key vault.\n\nThe default action of the Network ACL should be set to deny for when IPs are not matched. Azure services can be allowed to bypass.\n",
+          "Message": "Vault network ACL does not block access by default.",
+          "Namespace": "builtin.azure.keyvault.azure0013",
+          "Query": "data.builtin.azure.keyvault.azure0013.deny",
+          "Resolution": "Set a network ACL for the key vault",
+          "Severity": "CRITICAL",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/azu-0013",
+          "References": [
+            "https://docs.microsoft.com/en-us/azure/key-vault/general/network-security",
+            "https://avd.aquasec.com/misconfig/azu-0013"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "module.key_vault",
+            "Provider": "Azure",
+            "Service": "keyvault",
+            "StartLine": 3,
+            "EndLine": 14,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 3,
+                  "Content": "resource \"azurerm_key_vault\" \"keyvault\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"azurerm_key_vault\"\u001b[0m \u001b[38;5;37m\"keyvault\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 4,
+                  "Content": "  for_each                      = var.keyvault27",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mfor_each\u001b[0m                      = \u001b[38;5;33mvar\u001b[0m.keyvault27",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 5,
+                  "Content": "  name                          = each.value.name",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mname\u001b[0m                          = \u001b[38;5;33meach\u001b[0m.value.name",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 6,
+                  "Content": "  location                      = each.value.location",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mlocation\u001b[0m                      = \u001b[38;5;33meach\u001b[0m.value.location",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 7,
+                  "Content": "  resource_group_name           = each.value.resource_group_name",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mresource_group_name\u001b[0m           = \u001b[38;5;33meach\u001b[0m.value.resource_group_name",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 8,
+                  "Content": "  tenant_id                     = data.azurerm_client_config.current.tenant_id",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mtenant_id\u001b[0m                     = \u001b[38;5;33mdata\u001b[0m.azurerm_client_config.current.tenant_id",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 9,
+                  "Content": "  sku_name                      = each.value.sku_name",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245msku_name\u001b[0m                      = \u001b[38;5;33meach\u001b[0m.value.sku_name",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 10,
+                  "Content": "  purge_protection_enabled      = each.value.purge_protection_enabled",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mpurge_protection_enabled\u001b[0m      = \u001b[38;5;33meach\u001b[0m.value.purge_protection_enabled",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 11,
+                  "Content": "  soft_delete_retention_days    = each.value.soft_delete_retention_days",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245msoft_delete_retention_days\u001b[0m    = \u001b[38;5;33meach\u001b[0m.value.soft_delete_retention_days",
+                  "FirstCause": false,
+                  "LastCause": true
+                },
+                {
+                  "Number": 12,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                }
+              ]
+            },
+            "Occurrences": [
+              {
+                "Resource": "module.key_vault",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 73,
+                  "EndLine": 77
+                }
+              }
+            ]
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AZU-0016",
+          "Title": "Key vault should have purge protection enabled",
+          "Description": "Purge protection is an optional Key Vault behavior and is not enabled by default.\n\nPurge protection can only be enabled once soft-delete is enabled. It can be turned on via CLI or PowerShell.\n",
+          "Message": "Vault does not have purge protection enabled.",
+          "Namespace": "builtin.azure.keyvault.azure0016",
+          "Query": "data.builtin.azure.keyvault.azure0016.deny",
+          "Resolution": "Enable purge protection for key vaults",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/azu-0016",
+          "References": [
+            "https://docs.microsoft.com/en-us/azure/key-vault/general/soft-delete-overview#purge-protection",
+            "https://avd.aquasec.com/misconfig/azu-0016"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "module.key_vault",
+            "Provider": "Azure",
+            "Service": "keyvault",
+            "StartLine": 10,
+            "EndLine": 10,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 3,
+                  "Content": "resource \"azurerm_key_vault\" \"keyvault\" {",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"azurerm_key_vault\"\u001b[0m \u001b[38;5;37m\"keyvault\"\u001b[0m {",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 4,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 10,
+                  "Content": "  purge_protection_enabled      = each.value.purge_protection_enabled",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mpurge_protection_enabled\u001b[0m      = \u001b[38;5;33meach\u001b[0m.value.purge_protection_enabled",
+                  "FirstCause": true,
+                  "LastCause": true
+                },
+                {
+                  "Number": 13,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 14,
+                  "Content": "}",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "}",
+                  "FirstCause": false,
+                  "LastCause": false
+                }
+              ]
+            },
+            "Occurrences": [
+              {
+                "Resource": "azurerm_key_vault.keyvault[\"kv1\"]",
+                "Filename": "../../child_module/azurerm_key_vault/main.tf",
+                "Location": {
+                  "StartLine": 3,
+                  "EndLine": 14
+                }
+              },
+              {
+                "Resource": "module.key_vault",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 73,
+                  "EndLine": 77
+                }
+              }
+            ],
+            "RenderedCause": {
+              "Raw": "resource \"azurerm_key_vault\" \"keyvault\" {\n  purge_protection_enabled = false\n}",
+              "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"azurerm_key_vault\"\u001b[0m \u001b[38;5;37m\"keyvault\"\u001b[0m {\n  \u001b[38;5;245mpurge_protection_enabled\u001b[0m = \u001b[38;5;166mfalse\n\u001b[0m}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Target": "../../child_module/azurerm_key_vault_secret/main.tf",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 0,
+        "Failures": 1
+      },
+      "Misconfigurations": [
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AZU-0017",
+          "Title": "Key Vault Secret should have an expiration date set",
+          "Description": "Expiration Date is an optional Key Vault Secret behavior and is not set by default.\n\nSet when the resource will be become inactive.\n",
+          "Message": "Secret should have an expiry date specified.",
+          "Namespace": "builtin.azure.keyvault.azure0017",
+          "Query": "data.builtin.azure.keyvault.azure0017.deny",
+          "Resolution": "Set an expiry for secrets",
+          "Severity": "LOW",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/azu-0017",
+          "References": [
+            "https://docs.microsoft.com/en-us/azure/key-vault/secrets/about-secrets",
+            "https://avd.aquasec.com/misconfig/azu-0017"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "module.key_vault_secret",
+            "Provider": "Azure",
+            "Service": "keyvault",
+            "StartLine": 3,
+            "EndLine": 9,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 3,
+                  "Content": "resource \"azurerm_key_vault_secret\" \"secret\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"azurerm_key_vault_secret\"\u001b[0m \u001b[38;5;37m\"secret\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 4,
+                  "Content": "  for_each     = var.keyvaultsecret27",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mfor_each\u001b[0m     = \u001b[38;5;33mvar\u001b[0m.keyvaultsecret27",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 5,
+                  "Content": "  name         = each.value.name",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mname\u001b[0m         = \u001b[38;5;33meach\u001b[0m.value.name",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 6,
+                  "Content": "  value        = each.value.value",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mvalue\u001b[0m        = \u001b[38;5;33meach\u001b[0m.value.value",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 7,
+                  "Content": "  key_vault_id = data.azurerm_key_vault.keyvault[each.key].id",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mkey_vault_id\u001b[0m = \u001b[38;5;33mdata\u001b[0m.azurerm_key_vault.keyvault[\u001b[38;5;33meach\u001b[0m.key].id",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 8,
+                  "Content": "  content_type = each.value.content_type",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mcontent_type\u001b[0m = \u001b[38;5;33meach\u001b[0m.value.content_type",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 9,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            },
+            "Occurrences": [
+              {
+                "Resource": "module.key_vault_secret",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 85,
+                  "EndLine": 89
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Target": "../../child_module/azurerm_linux_virtual_machine/data.tf",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 0,
+        "Failures": 1
+      },
+      "Misconfigurations": [
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AZU-0068",
+          "Title": "VM Not Attached To Network",
+          "Description": "VMs without NSGs are exposed without traffic control or inspection.\n",
+          "Message": "Virtual machine network interface is not associated with a network security group.",
+          "Namespace": "builtin.azure.compute.azure0068",
+          "Query": "data.builtin.azure.compute.azure0068.deny",
+          "Resolution": "Associate an NSG to the VM's NIC or subnet to control traffic.",
+          "Severity": "MEDIUM",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/azu-0068",
+          "References": [
+            "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine#network_interface_ids",
+            "https://avd.aquasec.com/misconfig/azu-0068"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "module.virtual_machine",
+            "Provider": "Azure",
+            "Service": "compute",
+            "StartLine": 1,
+            "EndLine": 5,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 1,
+                  "Content": "data \"azurerm_network_interface\" \"nic\" {",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mdata\u001b[0m \u001b[38;5;37m\"azurerm_network_interface\"\u001b[0m \u001b[38;5;37m\"nic\"\u001b[0m {",
+                  "FirstCause": true,
+                  "LastCause": false
+                },
+                {
+                  "Number": 2,
+                  "Content": "  for_each            = var.vms",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mfor_each\u001b[0m            = \u001b[38;5;33mvar\u001b[0m.vms",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 3,
+                  "Content": "  name                = each.value.network_interface_name",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mname\u001b[0m                = \u001b[38;5;33meach\u001b[0m.value.network_interface_name",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 4,
+                  "Content": "  resource_group_name = each.value.resource_group_name",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mresource_group_name\u001b[0m = \u001b[38;5;33meach\u001b[0m.value.resource_group_name",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 5,
+                  "Content": "}",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "}",
+                  "FirstCause": false,
+                  "LastCause": true
+                }
+              ]
+            },
+            "Occurrences": [
+              {
+                "Resource": "module.virtual_machine",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 91,
+                  "EndLine": 95
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Target": "../../child_module/azurerm_linux_virtual_machine/main.tf",
+      "Class": "config",
+      "Type": "terraform",
+      "MisconfSummary": {
+        "Successes": 0,
+        "Failures": 2
+      },
+      "Misconfigurations": [
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AZU-0039",
+          "Title": "Password authentication should be disabled on Azure virtual machines",
+          "Description": "Access to virtual machines should be authenticated using SSH keys. Removing the option of password authentication enforces more secure methods while removing the risks inherent with passwords.\n",
+          "Message": "Linux virtual machine allows password authentication.",
+          "Namespace": "builtin.azure.compute.azure0039",
+          "Query": "data.builtin.azure.compute.azure0039.deny",
+          "Resolution": "Use ssh authentication for virtual machines",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/azu-0039",
+          "References": [
+            "https://avd.aquasec.com/misconfig/azu-0039"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "module.virtual_machine",
+            "Provider": "Azure",
+            "Service": "compute",
+            "StartLine": 11,
+            "EndLine": 11,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 3,
+                  "Content": "resource \"azurerm_linux_virtual_machine\" \"vm\" {",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"azurerm_linux_virtual_machine\"\u001b[0m \u001b[38;5;37m\"vm\"\u001b[0m {",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 4,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 11,
+                  "Content": "  disable_password_authentication = false",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mdisable_password_authentication\u001b[0m = \u001b[38;5;166mfalse",
+                  "FirstCause": true,
+                  "LastCause": true
+                },
+                {
+                  "Number": 24,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 25,
+                  "Content": "}",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "}",
+                  "FirstCause": false,
+                  "LastCause": false
+                }
+              ]
+            },
+            "Occurrences": [
+              {
+                "Resource": "azurerm_linux_virtual_machine.vm[\"vm1\"]",
+                "Filename": "../../child_module/azurerm_linux_virtual_machine/main.tf",
+                "Location": {
+                  "StartLine": 3,
+                  "EndLine": 25
+                }
+              },
+              {
+                "Resource": "module.virtual_machine",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 91,
+                  "EndLine": 95
+                }
+              }
+            ]
+          }
+        },
+        {
+          "Type": "Terraform Security Check",
+          "ID": "AZU-0039",
+          "Title": "Password authentication should be disabled on Azure virtual machines",
+          "Description": "Access to virtual machines should be authenticated using SSH keys. Removing the option of password authentication enforces more secure methods while removing the risks inherent with passwords.\n",
+          "Message": "Linux virtual machine allows password authentication.",
+          "Namespace": "builtin.azure.compute.azure0039",
+          "Query": "data.builtin.azure.compute.azure0039.deny",
+          "Resolution": "Use ssh authentication for virtual machines",
+          "Severity": "HIGH",
+          "PrimaryURL": "https://avd.aquasec.com/misconfig/azu-0039",
+          "References": [
+            "https://avd.aquasec.com/misconfig/azu-0039"
+          ],
+          "Status": "FAIL",
+          "CauseMetadata": {
+            "Resource": "module.virtual_machine",
+            "Provider": "Azure",
+            "Service": "compute",
+            "StartLine": 11,
+            "EndLine": 11,
+            "Code": {
+              "Lines": [
+                {
+                  "Number": 3,
+                  "Content": "resource \"azurerm_linux_virtual_machine\" \"vm\" {",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "\u001b[38;5;33mresource\u001b[0m \u001b[38;5;37m\"azurerm_linux_virtual_machine\"\u001b[0m \u001b[38;5;37m\"vm\"\u001b[0m {",
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 4,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 11,
+                  "Content": "  disable_password_authentication = false",
+                  "IsCause": true,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "  \u001b[38;5;245mdisable_password_authentication\u001b[0m = \u001b[38;5;166mfalse",
+                  "FirstCause": true,
+                  "LastCause": true
+                },
+                {
+                  "Number": 24,
+                  "Content": "",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": true,
+                  "FirstCause": false,
+                  "LastCause": false
+                },
+                {
+                  "Number": 25,
+                  "Content": "}",
+                  "IsCause": false,
+                  "Annotation": "",
+                  "Truncated": false,
+                  "Highlighted": "}",
+                  "FirstCause": false,
+                  "LastCause": false
+                }
+              ]
+            },
+            "Occurrences": [
+              {
+                "Resource": "azurerm_linux_virtual_machine.vm[\"vm2\"]",
+                "Filename": "../../child_module/azurerm_linux_virtual_machine/main.tf",
+                "Location": {
+                  "StartLine": 3,
+                  "EndLine": 25
+                }
+              },
+              {
+                "Resource": "module.virtual_machine",
+                "Filename": "main.tf",
+                "Location": {
+                  "StartLine": 91,
+                  "EndLine": 95
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

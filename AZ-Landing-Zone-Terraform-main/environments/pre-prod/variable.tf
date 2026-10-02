@@ -1,0 +1,16 @@
+variable "rg27" {}
+variable "vnet27" {}
+variable "snet27" {}
+variable "nsg27" {}
+variable "nsgaso27" {}
+variable "pip27" {}
+variable "nat27" {}
+variable "natpipaso27" {}
+variable "natsub27" {}
+variable "nic27" {}
+variable "appgw27" {}
+variable "bastion27" {}
+variable "vms" {}
+variable "keyvault27" {}
+variable "keyvaultsecret27" {}
+variable "keyvaultrole27" {}

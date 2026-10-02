@@ -1,0 +1,42 @@
+[
+ {
+  "RuleID": "generic-api-key",
+  "Description": "Detected a Generic API Key, potentially exposing access to various services and sensitive operations.",
+  "StartLine": 76,
+  "EndLine": 76,
+  "StartColumn": 4,
+  "EndColumn": 30,
+  "Match": "keyvault27 = var.keyvault27",
+  "Secret": "var.keyvault27",
+  "File": "environments/pre-prod/main.tf",
+  "SymlinkFile": "",
+  "Commit": "",
+  "Entropy": 3.5216405,
+  "Author": "",
+  "Email": "",
+  "Date": "",
+  "Message": "",
+  "Tags": [],
+  "Fingerprint": "environments/pre-prod/main.tf:generic-api-key:76"
+ },
+ {
+  "RuleID": "generic-api-key",
+  "Description": "Detected a Generic API Key, potentially exposing access to various services and sensitive operations.",
+  "StartLine": 88,
+  "EndLine": 88,
+  "StartColumn": 4,
+  "EndColumn": 42,
+  "Match": "keyvaultsecret27 = var.keyvaultsecret27",
+  "Secret": "var.keyvaultsecret27",
+  "File": "environments/pre-prod/main.tf",
+  "SymlinkFile": "",
+  "Commit": "",
+  "Entropy": 3.6841838,
+  "Author": "",
+  "Email": "",
+  "Date": "",
+  "Message": "",
+  "Tags": [],
+  "Fingerprint": "environments/pre-prod/main.tf:generic-api-key:88"
+ }
+]
