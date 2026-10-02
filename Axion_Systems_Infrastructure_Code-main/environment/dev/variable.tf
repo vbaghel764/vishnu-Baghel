@@ -1,0 +1,9 @@
+variable "rgs07" {}
+variable "vnet07" {}
+variable "snet07" {}
+variable "nsg07" {}
+variable "asso07" {}
+variable "pip07" {}
+variable "nic07" {}
+variable "vm07" {}
+variable "postgresql_servers" {}
